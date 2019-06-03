@@ -1,0 +1,41 @@
+{
+    "name": "ichhabrecht/intcache",
+    "description": "Turn uncachable page objects into cacheable links",
+    "type": "typo3-cms-extension",
+    "keywords": [
+        "TYPO3 CMS",
+        "Extension",
+        "Skeleton"
+    ],
+    "homepage": "https://github.com/IchHabRecht/intcache",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Nicole Cordes",
+            "email": "typo3@cordes.co",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">= 5.5, < 7.4",
+        "typo3/cms-core": "^7.6 || ^8.7 || ^9.5"
+    },
+    "require-dev": {
+        "nimut/testing-framework": "2.x-dev || 4.x-dev"
+    },
+    "replace": {
+        "typo3-ter/intcache": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "intcache",
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "app-dir": ".Build",
+            "web-dir": ".Build/public"
+        }
+    }
+}
