@@ -1,0 +1,17 @@
+lib.intcache = FLUIDTEMPLATE
+lib.intcache {
+    settings.typeNum = {$lib.intcache.settings.typeNum}
+
+    layoutRootPaths.0 = EXT:intcache/Resources/Private/Layouts/
+    layoutRootPaths.10 = {$lib.intcache.view.layoutRootPath}
+    partialRootPaths.0 = EXT:intcache/Resources/Private/Partials/
+    partialRootPaths.10 = {$lib.intcache.view.partialRootPath}
+    templateRootPaths.0 = EXT:intcache/Resources/Private/Templates/
+    templateRootPaths.10 = {$lib.intcache.view.templateRootPath}
+
+    templateName = Intcache
+    format = ajax
+
+    variables.intcache_link = TEXT
+    variables.intcache_link.field = intcache_link
+}

@@ -1,0 +1,13 @@
+lib.intcache {
+    # cat=intcache/basic/10; type=int; label=LLL:EXT:intcache/Resources/Private/Language/locallang_be.xlf:constants.typenum
+    settings.typeNum = 4242
+
+    # cat=intcache/basic/20; type=string; label=LLL:EXT:intcache/Resources/Private/Language/locallang_be.xlf:constants.templateRootPath
+    view.templateRootPath =
+
+    # cat=intcache/basic/30; type=string; label=LLL:EXT:intcache/Resources/Private/Language/locallang_be.xlf:constants.partialRootPath
+    view.partialRootPath =
+
+    # cat=intcache/basic/40; type=string; label=LLL:EXT:intcache/Resources/Private/Language/locallang_be.xlf:constants.layoutRootPath
+    view.layoutRootPath =
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-06-04T13:29:23Z" product-name="intcache">
+        <header />
+        <body>
+            <trans-unit id="constants.typenum">
+                <source>Page TypeNum for INT rendering</source>
+            </trans-unit>
+            <trans-unit id="constants.templateRootPath">
+                <source>Path to template root (FE)</source>
+            </trans-unit>
+            <trans-unit id="constants.partialRootPath">
+                <source>Path to template partials (FE)</source>
+            </trans-unit>
+            <trans-unit id="constants.layoutRootPath">
+                <source>Path to template layouts (FE)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
