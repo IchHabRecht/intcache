@@ -1,2 +1,2 @@
 <html xmlns:esi="http://typo3.org" data-namespace-typo3-fluid="true" />
-<!--esi <esi:include src="{intcache_link -> f:format.raw()}" />-->
+<!--esi <esi:include src="{intcache_link -> f:format.raw()}" />--><esi:remove>{intcache_content -> f:format.raw()}</esi:remove>

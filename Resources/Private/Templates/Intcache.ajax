@@ -1,1 +1,1 @@
-<div class="intcache intcache-item intcache-link" data-src="{intcache_link -> f:format.raw()}"></div>
+<div class="intcache intcache-item intcache-link" data-src="{intcache_link -> f:format.raw()}" id="intcache_{intcache_identifier}">{intcache_content -> f:format.raw()}</div>

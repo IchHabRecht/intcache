@@ -12,6 +12,24 @@ lib.intcache {
     templateName = Intcache
     format = ajax
 
-    variables.intcache_link = TEXT
-    variables.intcache_link.field = intcache_link
+    variables {
+        intcache_content = TEXT
+        intcache_content.field = intcache_content
+        intcache_identifier = TEXT
+        intcache_identifier.field = intcache_identifier
+        intcache_link = TEXT
+        intcache_link.field = intcache_link
+    }
+}
+
+intcache = PAGE
+intcache {
+    typeNum < lib.intcache.settings.typeNum
+
+    config {
+        disableAllHeaderCode = 1
+    }
+
+    10 = USER
+    10.userFunc = IchHabRecht\Intcache\Renderer\IntcacheRenderer->render
 }

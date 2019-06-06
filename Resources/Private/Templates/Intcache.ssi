@@ -1,1 +1,4 @@
-<!--#include virtual="{intcache_link -> f:format.raw()}"-->
+<!--# block name="intcache_{intcache_identifier}" -->
+{intcache_content -> f:format.raw()}
+<!--# endblock -->
+<!--# include virtual="{intcache_link -> f:format.raw()}" stub="intcache_{intcache_identifier}" -->

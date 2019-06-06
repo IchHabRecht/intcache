@@ -16,8 +16,10 @@ namespace IchHabRecht\Intcache\Hooks;
  */
 
 use IchHabRecht\Intcache\Exception\Exception;
+use IchHabRecht\Intcache\Renderer\IntObjectRenderer;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Core\ApplicationContext;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -26,9 +28,9 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 class ContentPostProcessHook
 {
     /**
-     * @var FrontendInterface
+     * @var ApplicationContext
      */
-    protected $intCache;
+    protected $applicationContext;
 
     /**
      * @var HashService
@@ -36,16 +38,30 @@ class ContentPostProcessHook
     protected $hashService;
 
     /**
+     * @var FrontendInterface
+     */
+    protected $intCache;
+
+    /**
+     * @var IntObjectRenderer
+     */
+    protected $intObjectRenderer;
+
+    /**
      * @var TypoScriptFrontendController
      */
     protected $typoScriptFrontendController;
 
     public function __construct(
+        ApplicationContext $applicationContext = null,
+        HashService $hashService = null,
         FrontendInterface $intCache = null,
-        HashService $hashService = null
+        IntObjectRenderer $intObjectRenderer = null
     ) {
-        $this->intCache = $intCache ?: GeneralUtility::makeInstance(CacheManager::class)->getCache('tx_intcache_int');
+        $this->applicationContext = $applicationContext ?: GeneralUtility::getApplicationContext();
         $this->hashService = $hashService ?: GeneralUtility::makeInstance(HashService::class);
+        $this->intCache = $intCache ?: GeneralUtility::makeInstance(CacheManager::class)->getCache('tx_intcache_int');
+        $this->intObjectRenderer = $intObjectRenderer ?: GeneralUtility::makeInstance(IntObjectRenderer::class);
     }
 
     public function replaceIntScripts(array $parameter)
@@ -78,8 +94,13 @@ class ContentPostProcessHook
                     $contentObjectRenderer = $this->typoScriptFrontendController->cObj;
                 }
 
+                $intcacheContent = '';
+                if ($this->applicationContext->isDevelopment()) {
+                    $intcacheContent = $this->intObjectRenderer->render($configuration);
+                }
+
                 $addQueryStringMethod = $this->typoScriptFrontendController->cHash ? 'GET' : '';
-                $link = $contentObjectRenderer->typoLink_URL(
+                $intcacheLink = $contentObjectRenderer->typoLink_URL(
                     [
                         'parameter' => implode(',', [
                             $this->typoScriptFrontendController->id,
@@ -94,10 +115,14 @@ class ContentPostProcessHook
                     ]
                 );
 
+                $intcacheIdentifier = $this->typoScriptFrontendController->uniqueHash('intcache');
+
                 $data = array_merge(
                     (array) $contentObjectRenderer->data,
                     [
-                        'intcache_link' => $link,
+                        'intcache_content' => $intcacheContent,
+                        'intcache_identifier' => $intcacheIdentifier,
+                        'intcache_link' => $intcacheLink,
                     ]
                 );
 
