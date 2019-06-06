@@ -23,6 +23,11 @@
     "require-dev": {
         "nimut/testing-framework": "2.x-dev || 4.x-dev"
     },
+    "autoload": {
+        "psr-4": {
+            "IchHabRecht\\Intcache\\": "Classes/"
+        }
+    },
     "replace": {
         "typo3-ter/intcache": "self.version"
     },
