@@ -4,7 +4,6 @@ enabled:
   - alpha_ordered_imports
   - binary_operator_spaces
   - blank_line_before_return
-  - cast_spaces
   - concat_with_spaces
   - function_typehint_space
   - hash_to_slash_comment

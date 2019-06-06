@@ -93,7 +93,7 @@ class IntcacheRenderer
         $this->typoScriptFrontendController->config['config']['additionalHeaders.'] += [
             [
                 'header' => !empty($matches[2]) ? $matches[2] : 'Not Found',
-                'httpResponseCode' => !empty($matches[1]) ? (int) $matches[1] : 404,
+                'httpResponseCode' => !empty($matches[1]) ? (int)$matches[1] : 404,
                 'replace' => '1',
             ],
         ];

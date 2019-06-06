@@ -118,7 +118,7 @@ class ContentPostProcessHook
                 $intcacheIdentifier = $this->typoScriptFrontendController->uniqueHash('intcache');
 
                 $data = array_merge(
-                    (array) $contentObjectRenderer->data,
+                    (array)$contentObjectRenderer->data,
                     [
                         'intcache_content' => $intcacheContent,
                         'intcache_identifier' => $intcacheIdentifier,
