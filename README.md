@@ -6,7 +6,14 @@
 
 Turn uncachable page objects into cacheable links
 
-## Features
+Pages that contain uncachable content elements (INT-objects, uncached plugin content) are delivered with a no-cache
+header to the user. This extension replaces the uncachable content elements and provides urls to fetch the content
+asynchronous.
+
+The content is replaced either as
+- div-container for JavaScript/Ajax processing
+- SSI block for NGINX or Apache processing
+- ESI block for Varnish processing
 
 ## Installation
 
@@ -16,4 +23,81 @@ Simply install the extension with Composer or the [Extension Manager](https://ex
 
 ## Usage
 
-## Community
+- include the provided static TypoScript of the intcache extension
+
+### JavaScript
+
+- for each element a div-container with classes `intcache intcache-item intcache-link` is rendered
+- the source url is provided as `data-src` attribute
+- you need to provide a script that iterates over all div's and fetches the content from provided urls
+
+### Server Side Includes
+
+- enable SSI support in your NGINX configuration
+
+```
+location ~ \.php$ {
+    ssi on;
+}
+```
+
+- change TypoScript to use SSI rendering
+
+```
+lib.intcache.format = ssi
+```
+
+### Edge Side Includes
+
+- enable ESI support in your Varnish configuration
+
+```
+sub vcl_backend_response {
+    set beresp.do_esi = true;
+}
+```
+
+- change TypoScript to use ESI rendering
+
+```
+lib.intcache.format = esi
+```
+
+## Additional configuration
+
+### Templates
+
+Simply set the `templateRootPath` TypoScript *constant* to provide an additional template path. 
+
+```
+lib.intcache.view.templateRootPath = EXT:extension/Resources/Private/Templates/Intcache/
+```
+
+By default the files `Intcache.ajax`, `Intcache.esi` or `Intcache.ssi` are used for rendering (according to your current
+format setting). You may want to change the `lib.intcache.format` TypoScript setting to add your own format. 
+
+### Content
+
+To be able the see the current content without any further processing, the content is rendered if the TYPO3 *Development*
+application context is enabled.
+
+### Cache timeout
+
+By default all urls send a `no-cache` header to the user. You can define own cache timeouts by using `cache_timeout`
+TypoScript configuration.
+
+Example configuration for COA_INT objects:
+```
+page.5 = COA_INT
+page.5 {
+    cache_timeout = 500 // cache this content 500 seconds
+    10 = TEXT
+    10.wrap = <p>|</p>
+    10.value = Hello world
+}
+```
+
+Example configuration for plugins:
+```
+tt_content.list.20.[pluginName].cache_timeout = 300
+```
