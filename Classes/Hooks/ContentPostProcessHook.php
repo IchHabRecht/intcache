@@ -106,12 +106,12 @@ class ContentPostProcessHook
                             $this->typoScriptFrontendController->id,
                             $this->typoScriptFrontendController->tmpl->setup['lib.']['intcache.']['settings.']['typeNum'],
                         ]),
-                        'forceAbsoluteUrl' => 1,
                         'addQueryString.' => [
                             'method' => $addQueryStringMethod,
                         ],
                         'additionalParams' => '&tx_intcache[identifier]=' . $this->hashService->appendHmac($cacheIdentifier),
                         'useCacheHash' => 1,
+                        'wrap' => $this->typoScriptFrontendController->absRefPrefix . '|',
                     ]
                 );
 
