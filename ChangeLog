@@ -1,3 +1,6 @@
+2019-09-03         [RELEASE] Release of intcache 1.1.0 (Nicole Cordes)
+2019-09-03 9093088 [FEATURE] Add TypoScript configuration to disable intcache handling (Nicole Cordes)
+
 2019-09-03         [RELEASE] Release of intcache 1.0.2 (Nicole Cordes)
 2019-09-03 c4af82d [BUGFIX] Correctly enable addQueryString in typolink configuration (Nicole Cordes)
 2019-09-03 8897f4a [BUGFIX] Allow overriding cache configuration (Nicole Cordes)
