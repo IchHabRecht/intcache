@@ -106,6 +106,7 @@ class ContentPostProcessHook
                             $this->typoScriptFrontendController->id,
                             $this->typoScriptFrontendController->tmpl->setup['lib.']['intcache.']['settings.']['typeNum'],
                         ]),
+                        'addQueryString' => !empty($addQueryStringMethod),
                         'addQueryString.' => [
                             'method' => $addQueryStringMethod,
                         ],
