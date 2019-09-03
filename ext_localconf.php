@@ -12,6 +12,8 @@ call_user_func(function () {
         'groups' => ['system'],
     ];
 
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase']['intcache'] =
+        \IchHabRecht\Intcache\Hooks\CreateHashBaseHook::class . '->createHashBase';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all']['intcache'] =
         \IchHabRecht\Intcache\Hooks\ContentPostProcessHook::class . '->replaceIntScripts';
 });
