@@ -18,9 +18,12 @@ namespace IchHabRecht\Intcache\Renderer;
 use IchHabRecht\Intcache\Exception\Exception;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Page\PageAccessFailureReasons;
 
 class IntcacheRenderer
 {
@@ -69,8 +72,6 @@ class IntcacheRenderer
 
         if (empty($configuration)) {
             $this->setPageNotFound();
-
-            return '';
         }
 
         if (!empty($configuration['conf']['cache_timeout'])) {
@@ -84,18 +85,19 @@ class IntcacheRenderer
 
     protected function setPageNotFound()
     {
-        $this->typoScriptFrontendController->set_no_cache('No intcache configuration found');
-        if (empty($this->typoScriptFrontendController->config['config']['additionalHeaders.'])) {
-            $this->typoScriptFrontendController->config['config']['additionalHeaders.'] = [];
+        if (class_exists('TYPO3\\CMS\\Core\\Http\\ImmediateResponseException')) {
+            $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                $GLOBALS['TYPO3_REQUEST'],
+                'No intcache configuration found',
+                [
+                    'code' => PageAccessFailureReasons::PAGE_NOT_FOUND,
+                ]
+            );
+            throw new ImmediateResponseException($response, 1533931329);
         }
-        $matches = [];
-        preg_match('/\s+(\d+)\s+(.*)/', $GLOBALS['TYPO3_CONF_VARS']['FE']['pageNotFound_handling_statheader'], $matches);
-        $this->typoScriptFrontendController->config['config']['additionalHeaders.'] += [
-            [
-                'header' => !empty($matches[2]) ? $matches[2] : 'Not Found',
-                'httpResponseCode' => !empty($matches[1]) ? (int)$matches[1] : 404,
-                'replace' => '1',
-            ],
-        ];
+
+        $this->typoScriptFrontendController->pageNotFoundAndExit(
+            'No intcache configuration found'
+        );
     }
 }
