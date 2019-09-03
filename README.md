@@ -65,6 +65,11 @@ lib.intcache.format = esi
 
 ## Additional configuration
 
+### intcache handling
+
+To be able to deactivate the intcache handling on certain sites and/or domains, you can explicitly disable it using
+the TypoScript setup `config.intcache = 0`.
+
 ### Templates
 
 Simply set the `templateRootPath` TypoScript *constant* to provide an additional template path. 

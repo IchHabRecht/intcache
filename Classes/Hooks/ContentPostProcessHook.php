@@ -69,6 +69,7 @@ class ContentPostProcessHook
         $this->typoScriptFrontendController = $parameter['pObj'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST'
             || empty($this->typoScriptFrontendController->config['INTincScript'])
+            || empty($this->typoScriptFrontendController->tmpl->setup['config.']['intcache'])
         ) {
             return;
         }

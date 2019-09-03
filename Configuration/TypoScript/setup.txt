@@ -1,3 +1,5 @@
+config.intcache = 1
+
 lib.intcache = FLUIDTEMPLATE
 lib.intcache {
     settings.typeNum = {$lib.intcache.settings.typeNum}
