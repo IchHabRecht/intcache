@@ -1,3 +1,7 @@
+2019-09-03         [RELEASE] Release of intcache 1.0.2 (Nicole Cordes)
+2019-09-03 c4af82d [BUGFIX] Correctly enable addQueryString in typolink configuration (Nicole Cordes)
+2019-09-03 8897f4a [BUGFIX] Allow overriding cache configuration (Nicole Cordes)
+
 2019-09-03         [RELEASE] Release of intcache 1.0.1 (Nicole Cordes)
 2019-09-03 ae2e968 [BUGFIX] Enforce separate page cache entries (Nicole Cordes)
 2019-09-03 fbea474 [BUGFIX] Use proper pageNotFound handling (Nicole Cordes)
