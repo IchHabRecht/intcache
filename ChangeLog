@@ -1,3 +1,8 @@
+2020-02-10         [RELEASE] Release of intcache 1.1.1 (Nicole Cordes)
+2020-02-10 8a5f5b6 [FEATURE] Add functional tests (Nicole Cordes)
+2020-02-10 df593e2 [TASK] Update supporting files to EXT:my_skeleton 0.3.0 (Nicole Cordes)
+2020-02-06 513e6b6 Allow disabling intcache for typoscript page type (mueller-sebastian)
+
 2019-09-03         [RELEASE] Release of intcache 1.1.0 (Nicole Cordes)
 2019-09-03 9093088 [FEATURE] Add TypoScript configuration to disable intcache handling (Nicole Cordes)
 
