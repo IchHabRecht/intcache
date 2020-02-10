@@ -28,6 +28,11 @@
             "IchHabRecht\\Intcache\\": "Classes/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "IchHabRecht\\Intcache\\Tests\\": "Tests/"
+        }
+    },
     "replace": {
         "typo3-ter/intcache": "self.version"
     },
