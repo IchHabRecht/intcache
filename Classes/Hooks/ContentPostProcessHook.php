@@ -17,9 +17,11 @@ namespace IchHabRecht\Intcache\Hooks;
 
 use IchHabRecht\Intcache\Exception\Exception;
 use IchHabRecht\Intcache\Renderer\IntObjectRenderer;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Core\ApplicationContext;
+use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -81,6 +83,16 @@ class ContentPostProcessHook
         $cacheTag = 'newHash_' . $this->typoScriptFrontendController->newHash;
         $this->intCache->flushByTag($cacheTag);
 
+        $useQueryString = !empty($this->typoScriptFrontendController->cHash);
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if (!$useQueryString && $request instanceof ServerRequestInterface) {
+            $pageArguments = $request->getAttribute('routing');
+            if ($pageArguments instanceof PageArguments) {
+                $useQueryString = !empty($pageArguments->getStaticArguments());
+            }
+        }
+        $addQueryStringMethod = $useQueryString ? 'GET' : '';
+
         $content = $this->typoScriptFrontendController->content;
         foreach ($this->typoScriptFrontendController->config['INTincScript'] as $identifier => $configuration) {
             $matches = [];
@@ -100,7 +112,6 @@ class ContentPostProcessHook
                     $intcacheContent = $this->intObjectRenderer->render($configuration);
                 }
 
-                $addQueryStringMethod = $this->typoScriptFrontendController->cHash ? 'GET' : '';
                 $intcacheLink = $contentObjectRenderer->typoLink_URL(
                     [
                         'parameter' => implode(',', [
