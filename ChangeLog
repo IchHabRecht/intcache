@@ -1,3 +1,6 @@
+2020-04-15         [RELEASE] Release of intcache 1.1.2 (Nicole Cordes)
+2020-04-14 19a6377 [BUGFIX] Add support for route enhancers (Nicole Cordes)
+
 2020-02-10         [RELEASE] Release of intcache 1.1.1 (Nicole Cordes)
 2020-02-10 8a5f5b6 [FEATURE] Add functional tests (Nicole Cordes)
 2020-02-10 df593e2 [TASK] Update supporting files to EXT:my_skeleton 0.3.0 (Nicole Cordes)
