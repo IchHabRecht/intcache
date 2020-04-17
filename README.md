@@ -106,3 +106,7 @@ Example configuration for plugins:
 ```
 tt_content.list.20.[pluginName].cache_timeout = 300
 ```
+
+## Community
+
+- Thanks to [elementare teilchen GmbH](https://www.elementare-teilchen.de) that sponsors the maintenance of this extension with a [GitHub sponsorship](https://github.com/sponsors/IchHabRecht)
