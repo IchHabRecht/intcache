@@ -1,3 +1,7 @@
+2020-04-24         [RELEASE] Release of intcache 1.1.3 (Nicole Cordes)
+2020-04-24 e2c7e25 [TASK] Raise TYPO3 dependencies to include 10.4 (Nicole Cordes)
+2020-04-17 c285017 [TASK] Update community part of README.md (Nicole Cordes)
+
 2020-04-15         [RELEASE] Release of intcache 1.1.2 (Nicole Cordes)
 2020-04-14 19a6377 [BUGFIX] Add support for route enhancers (Nicole Cordes)
 
