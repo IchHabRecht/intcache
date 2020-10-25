@@ -1,4 +1,5 @@
 <?php
+
 namespace IchHabRecht\Intcache\Hooks;
 
 /*
@@ -84,7 +85,7 @@ class ContentPostProcessHook
         $this->intCache->flushByTag($cacheTag);
 
         $useQueryString = !empty($this->typoScriptFrontendController->cHash);
-        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        $request = (!empty($GLOBALS['TYPO3_REQUEST'])) ? $GLOBALS['TYPO3_REQUEST'] : null;
         if (!$useQueryString && $request instanceof ServerRequestInterface) {
             $pageArguments = $request->getAttribute('routing');
             if ($pageArguments instanceof PageArguments) {
